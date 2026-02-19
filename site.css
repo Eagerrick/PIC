@@ -1,0 +1,276 @@
+/* =========================
+   GENERAL RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.6;
+    margin-top: 60px; /* Push content below fixed navbar */
+}
+
+/* =========================
+   NAVBAR
+========================= */
+nav {
+    background-color: #0c121e;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav .logo h2 {
+    color: white;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #f75d0a;
+    border-radius: 4px;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+    text-align: center;
+    padding: 80px 20px 40px 20px; /* Top padding accounts for navbar */
+    background-color: #060d41;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #f8f8ff;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+section {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+h2 {
+    color: #000000;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* =========================
+   TEAM CARDS
+========================= */
+#team div {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   LINKS
+========================= */
+a {
+    color: #fc6a02;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.logo img {
+    height: 65px;   /* Adjust size */
+    width: auto;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        display: none; /* Hidden by default, can be toggled with JS if needed */
+    }
+
+    nav ul li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.hero {
+    position: relative;
+    height: 80vh; /* takes most of screen */
+    background: url("header.jpeg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Dark translucent overlay */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* adjust 0.5 for darker/lighter */
+}
+
+/* Box in front */
+.hero-content {
+    position: relative;
+    background: rgba(79, 97, 178, 0.85);
+    padding: 40px 60px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 700px;
+}
+
+/* Optional styling */
+.hero-content h1 {
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+}
+
+.team {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.team h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2rem;
+}
+
+/* Flex container for cards */
+.team-cards {
+    display: flex;
+    flex-wrap: wrap; /* wrap to second row */
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Each card will take ~1/3 of container width minus gaps */
+.team-card {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    flex: 0 1 calc(33.333% - 20px); /* 3 per row with gap adjustment */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.team-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.team-card h3 {
+    margin: 10px 0 5px;
+}
+
+.team-card p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 900px) {
+    .team-card {
+        flex: 0 1 calc(50% - 20px); /* 2 per row */
+    }
+}
+
+@media (max-width: 600px) {
+    .team-card {
+        flex: 0 1 100%; /* 1 per row */
+    }
+}
