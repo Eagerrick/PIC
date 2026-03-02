@@ -218,6 +218,7 @@ footer {
 .hero {
     background: url("images/header.jpeg") center/cover no-repeat;
     background-size: cover;
+    margin-bottom: 24px; /* space between header image and following title/content */
 }
 
 /* Large hero: used on index page, shows overlay + centered box */
@@ -348,15 +349,22 @@ footer {
 /* Team hero with background image and white overlay */
 .team-hero {
     position: relative;
-    background: url("images/preto.jpeg") center/cover no-repeat;
-    padding: 120px 20px; /* creates vertical space for image */
+    background: url("images/sky.jpeg") center/cover no-repeat;
+    background-size: cover;
+    /* occupy full viewport height minus navbar (60px) so it fills the screen */
+    min-height: calc(100vh - 60px);
+    display: flex;
+    align-items: center; /* vertically center the overlay */
+    padding: 0 20px; /* horizontal padding only */
 }
 
 .overlay-box {
-    max-width: 1100px;
+    /* wider but responsive: use up to 1200px or 92% of viewport */
+    width: min(1200px, 92%);
+    max-width: 1200px;
     margin: 0 auto;
     background: white;
-    padding: 30px;
+    padding: 36px 36px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(10,20,40,0.12);
 }
@@ -435,29 +443,30 @@ footer {
    BLOG PREVIEW CARDS
    Display two rectangular post cards side-by-side
 ========================= */
+
 .blog-preview .blog-cards {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     align-items: stretch;
     justify-content: space-between;
 }
 
 .blog-preview .blog-card {
     background: #ffffff;
-    border: 1px solid rgba(12,18,30,0.08);
-    border-radius: 10px;
+    border: 1px solid rgba(12,18,30,0.06);
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 6px 18px rgba(10,20,40,0.06);
-    flex: 0 1 calc(50% - 10px); /* two cards side-by-side */
+    box-shadow: 0 6px 16px rgba(10,20,40,0.06);
+    flex: 0 1 calc(45% - 10px); /* slightly narrower cards */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 300px;
+    min-height: 150px; /* small rectangle */
 }
 
 .blog-preview .blog-card .blog-image {
     width: 100%;
-    height: 180px;
+    height: 70px; /* very small image */
     object-fit: cover;
     margin-bottom: 0;
     display: block;
@@ -467,43 +476,101 @@ footer {
 .blog-preview .blog-card > .date,
 .blog-preview .blog-card > p,
 .blog-preview .blog-card > .read-more {
-    padding: 0 20px;
+    padding: 0 10px; /* compact padding */
 }
 
 .blog-preview .blog-card > h3:first-of-type {
-    padding-top: 16px;
+    padding-top: 6px;
+    padding-bottom: 2px;
 }
 
 .blog-preview .blog-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 8px;
+    font-size: 0.9rem; /* very small heading */
+    margin: 0;
     color: #0b2540;
 }
 
 .blog-preview .blog-card .date {
     color: #777;
-    font-size: 0.9rem;
-    margin-bottom: 12px;
+    font-size: 0.75rem;
+    margin: 2px 0;
+    padding-bottom: 2px;
 }
 
 .blog-preview .blog-card p {
     color: #333;
-    margin-bottom: 14px;
+    margin: 2px 0;
     flex-grow: 1;
+    font-size: 0.8rem;
+    line-height: 1.2;
 }
 
 .blog-preview .blog-card .read-more {
     align-self: flex-start;
     background: #fc6a02;
     color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
+    padding: 3px 8px;
+    border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
+    font-size: 0.75rem;
+    margin-top: 2px;
 }
 
 .blog-preview .blog-card .read-more:hover {
     background: #f75d0a;
+}
+
+/* Space multiple .blog-cards groups and center single-card rows */
+.blog-preview .blog-cards + .blog-cards {
+    margin-top: 22px; /* vertical gap between rows of cards */
+}
+
+.blog-preview .blog-cards {
+    /* when a group has only one card, center it */
+    justify-content: flex-start;
+}
+
+.blog-preview .blog-cards:only-child,
+.blog-preview .blog-cards:only-of-type {
+    justify-content: center;
+}
+
+.blog-preview .blog-cards > .blog-card:only-child {
+    margin-left: auto;
+    margin-right: auto;
+    flex: 0 1 60%; /* make single card a bit narrower and centered */
+}
+
+/* Two-column variant: allow stacking one card under another in left column */
+.blog-preview .blog-cards.columns {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.blog-preview .blog-cards.columns .col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 0 1 48%;
+}
+
+/* Make stacked cards in the left column visually match spacing */
+.blog-preview .blog-cards.columns .col .blog-card {
+    min-height: unset; /* allow individual cards to size naturally when stacked */
+}
+
+@media (max-width: 720px) {
+    .blog-preview .blog-cards.columns {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .blog-preview .blog-cards.columns .col {
+        flex: 0 1 100%;
+    }
 }
 
 @media (max-width: 720px) {
@@ -518,6 +585,53 @@ footer {
 
 /* =========================
    PROJECT SECTIONS - Alternate Text & Images
+========================= */
+/* =========================
+   WHO ARE WE SECTION
+========================= */
+.who-are-we {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+.who-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.who-content h2 {
+    font-size: 2rem;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.who-content p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.who-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.who-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    object-fit: cover;
+}
+
+/* =========================
+   PROJECT SECTIONS
 ========================= */
 .project-section {
     padding: 60px 20px;
@@ -604,6 +718,16 @@ footer {
 
 /* Responsive Design for Project Sections */
 @media (max-width: 900px) {
+    .who-are-we {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .who-content,
+    .who-image {
+        min-width: 100%;
+    }
+
     .project-row {
         flex-direction: column;
         gap: 30px;
@@ -786,6 +910,42 @@ footer {
     height: auto;
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
+.contact-btn {
+    display: inline-block;
+    background: #fc6a02;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.05rem;
+    transition: background 0.3s ease;
+}
+
+.team-btn {
+    display: inline-block;
+    background: #fc6a02;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.05rem;
+    transition: background 0.3s ease;
+}
+
+.project-btn {
+    display: inline-block;
+    background: #fc6a02;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.05rem;
+    transition: background 0.3s ease;
 }
 
 /* Responsive: stack on smaller screens */
